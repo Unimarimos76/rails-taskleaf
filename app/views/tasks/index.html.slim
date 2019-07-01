@@ -1,0 +1,24 @@
+h1 タスク一覧
+= link_to '新規登録', new_task_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Task.human_attribute_name(:name)
+      th= Task.human_attribute_name(:email)
+      th= Task.human_attribute_name(:admin)
+      th= Task.human_attribute_name(:created_at)
+      th= Task.human_attribute_name(:updated_at)
+  tbody
+   - @tasks.each do |task|
+     tr
+       td= link_to user.name, [:admin, user]
+       td= user.emailtd
+       td= user.admin? ? 'あり' : 'なし' 
+       td= user.created_at
+       td= user.updated_at
+       td
+         = link_to '編集', edit_task_path(task), class: 'btn-primary mr-3' 
+         = link_to '削除', [:admin, user], method: :delete, date: {confirm: "ユーザー「#{@user.name}」を削除します。よろしいですか"}, class: 'btn btn-danger'
+         
