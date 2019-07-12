@@ -56,8 +56,8 @@ jobs:
   　 version: 2
     #  build-deploy:
        jobs: 
-       - build 
-       - test
+         - build 
+         - test
       #  - deploy: 
       #    requires: 
       #      - build
