@@ -11,16 +11,13 @@ jobs:
 
   test: 
     docker:
-      - image: circleci/ruby:2.5.3
-      environment:
-          # ①
-          BUNDLER_VERSION: 2.0.1
+      - image: circleci/ruby:2.6.3
       - image: circleci/postgres:9.4.12-alpine
     steps:
       - checkout
       - restore_cache:
           key: taskleaf-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path vendor/bundle 
+      # - run: bundle install --path vendor/bundle 
       - save_cache:
           key: taskleaf-{{ checksum "Gemfile.lock" }}
           paths: 
@@ -29,7 +26,7 @@ jobs:
           name: bundle install
           no_output_timeout: 15m
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle install --jobs=4 --retry=3 --path bundle
   
   # deploy: 
     # docker:
@@ -60,7 +57,7 @@ workflows:
   version: 2
   build-test:
     jobs:
-      # - build
+      - build
       - test
   #  - deploy: 
   #    requires: 
