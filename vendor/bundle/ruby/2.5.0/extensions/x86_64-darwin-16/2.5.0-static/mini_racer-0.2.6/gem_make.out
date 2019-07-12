@@ -1,0 +1,18 @@
+current directory: /Users/uni880/rails_tutorial/taskleaf/vendor/bundle/ruby/2.5.0/gems/mini_racer-0.2.6/ext/mini_racer_extension
+/Users/uni880/.rbenv/versions/2.5.3/bin/ruby -r ./siteconf20190713-80784-1awzbbk.rb extconf.rb
+checking for -lpthread... yes
+checking for -lobjc... yes
+creating Makefile
+
+current directory: /Users/uni880/rails_tutorial/taskleaf/vendor/bundle/ruby/2.5.0/gems/mini_racer-0.2.6/ext/mini_racer_extension
+make "DESTDIR=" clean
+
+current directory: /Users/uni880/rails_tutorial/taskleaf/vendor/bundle/ruby/2.5.0/gems/mini_racer-0.2.6/ext/mini_racer_extension
+make "DESTDIR="
+compiling mini_racer_extension.cc
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+linking shared-object mini_racer_extension.bundle
+
+current directory: /Users/uni880/rails_tutorial/taskleaf/vendor/bundle/ruby/2.5.0/gems/mini_racer-0.2.6/ext/mini_racer_extension
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 mini_racer_extension.bundle ./.gem.20190713-80784-kpyfkr
