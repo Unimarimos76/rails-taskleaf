@@ -54,7 +54,7 @@ jobs:
 
   workflows: 
   　version: 2
-     jobs:
+    jobs:
      - build 
      - test
   #  - deploy: 
