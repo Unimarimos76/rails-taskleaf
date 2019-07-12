@@ -7,57 +7,62 @@ jobs:
     #  - checkout 
     #  - run: echo "A first hello"
 
-    docker:
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+      - image: circleci/postgres:9.4.12-alpine
 
     working_directory: ~rails_tutorial/taskeleaf
-
+  test: 
     steps:
       - checkout
+      - name: Restore bundle cache 
+      - key: taskleaf-{{ checksum "Gemfile.lock" }}
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+      - run: bundle install --path vendor/bundle 
+      
+      - name: Store bundle cache
+      - key: taskleaf-{{ checksum "Gemfile.lock" }}
+      
       - run:
-          name: install dependencies
+          name: bundle install
+          no_output_timeout: 15m
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+  
+  # deploy: 
+    # docker:
+      # - image: circleci/ruby:2.6.1-node-browsers
+    # working_directory: ~/rails_turorial/taskleaf
+    # steps:
+      # - checkout
+      # - run:
+          # name: 'Install Heroku CLI, if necessary'
+          # command: |
+            # if [[ $(command -v heroku) == "" ]]; then
+              # curl https://cli-assets.heroku.com/install.sh | sh
+            # else
+              # echo "Heroku is already installed. No operation was performed."
+            # fi
+      # - run:
+          # name: heroku maintenance on
+          # command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
+      # - run:
+          # name: Deploy to Heroku_Staging
+          # command: |
+            # git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_STAGE.git master
+      # - run:
+          # name: heroku maintenance off
+          # command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
 
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-
-      # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
-
-            bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+  workflows: 
+  　 version: 2
+     build-deploy:
+       jobs: 
+       - build 
+       - test
+      #  - deploy: 
+      #    requires: 
+      #      - build
+      #      - test
+      #    fileters:
+      #      branches: 
+      #      only: 
+      #        - master
