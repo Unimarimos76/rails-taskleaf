@@ -17,7 +17,7 @@ jobs:
       - checkout
       - restore_cache:
           key: taskleaf-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path ./bundle 
+      - run: bundle install
       - save_cache:
           key: taskleaf-{{ checksum "Gemfile.lock" }}
           paths: 
@@ -26,8 +26,7 @@ jobs:
           name: bundle install
           no_output_timeout: 15m
           command: |
-            bundle install --jobs=4 --retry=3 --path ./bundle
-  
+            bundle install --jobs=4 --retry=3
   # deploy: 
     # docker:
       # - image: circleci/ruby:2.6.1-node-browsers
