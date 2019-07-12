@@ -52,9 +52,9 @@ jobs:
           # name: heroku maintenance off
           # command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
 
-  workflows: 
-  　version: 2
-    jobs:
+ workflows: 
+   version: 2
+   jobs:
      - build 
      - test
   #  - deploy: 
