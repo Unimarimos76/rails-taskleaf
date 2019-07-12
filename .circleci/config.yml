@@ -15,12 +15,12 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     steps:
       - checkout
-      - name: Restore bundle cache 
+      - type: Restore bundle cache 
       - key: taskleaf-{{ checksum "Gemfile.lock" }}
 
       - run: bundle install --path vendor/bundle 
       
-      - name: Store bundle cache
+      - type: Store bundle cache
       - key: taskleaf-{{ checksum "Gemfile.lock" }}
       
       - run:
