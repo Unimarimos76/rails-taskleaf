@@ -14,12 +14,12 @@ jobs:
       - image: circleci/ruby:2.5.3
       - image: circleci/postgres:9.4.12-alpine
     steps:
+      - checkout
       - run:
           name: bundle install
           no_output_timeout: 15m
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - checkout
       - restore_cache:
           key: taskleaf-{{ checksum "Gemfile.lock" }}
       - save_cache:
