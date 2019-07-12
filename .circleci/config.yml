@@ -11,7 +11,7 @@ jobs:
 
   test: 
     docker:
-      - image: circleci/ruby:2.6.3
+      - image: circleci/ruby:2.5.3
       - image: circleci/postgres:9.4.12-alpine
     steps:
       - checkout
@@ -57,7 +57,7 @@ workflows:
   version: 2
   build-test:
     jobs:
-      - build
+      # - build
       - test
   #  - deploy: 
   #    requires: 
