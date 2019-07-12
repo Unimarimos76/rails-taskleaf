@@ -7,7 +7,7 @@ jobs:
     steps:
      - checkout 
      - run: echo "A first hello"
-    working_directory: ~/rails_tutorial/taskeleaf
+    working_directory: ~/rails-taskeleaf
 
   test: 
     docker:
@@ -26,6 +26,7 @@ jobs:
             --out /tmp/test-results/rspec.xml \
             --format progress \
             $TEST_FILES
+
       - run:
           name: bundle install
           no_output_timeout: 15m
@@ -34,7 +35,6 @@ jobs:
       - checkout
       - restore_cache:
           key: taskleaf-{{ checksum "Gemfile.lock" }}
-      # - run: bundle install --path vendor/bundle 
       - save_cache:
           key: taskleaf-{{ checksum "Gemfile.lock" }}
           paths: 
