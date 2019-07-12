@@ -1,0 +1,15 @@
+current directory: /Users/uni880/rails_tutorial/taskleaf/vendor/bundler/ruby/2.5.0/gems/bindex-0.7.0/ext/skiptrace
+/Users/uni880/.rbenv/versions/2.5.3/bin/ruby -r ./siteconf20190713-58127-olp6o5.rb extconf.rb
+creating Makefile
+
+current directory: /Users/uni880/rails_tutorial/taskleaf/vendor/bundler/ruby/2.5.0/gems/bindex-0.7.0/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /Users/uni880/rails_tutorial/taskleaf/vendor/bundler/ruby/2.5.0/gems/bindex-0.7.0/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/cruby.bundle
+
+current directory: /Users/uni880/rails_tutorial/taskleaf/vendor/bundler/ruby/2.5.0/gems/bindex-0.7.0/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20190713-58127-j5eaqh/skiptrace
