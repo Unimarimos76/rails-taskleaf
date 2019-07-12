@@ -7,7 +7,7 @@ jobs:
     steps:
      - checkout 
      - run: echo "A first hello"
-    working_directory: ~rails_tutorial/taskeleaf
+    working_directory: ~/rails_tutorial/taskeleaf
 
   test: 
     docker:
