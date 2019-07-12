@@ -53,15 +53,15 @@ jobs:
           # command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
 
   workflows: 
-  　 version: 2
-      build-deploy:
-         - build 
-         - test
-      #  - deploy: 
-      #    requires: 
-      #      - build
-      #      - test
-      #    fileters:
-      #      branches: 
-      #      only: 
-      #        - master
+  　version: 2
+   jobs:
+     - build 
+     - test
+  #  - deploy: 
+  #    requires: 
+  #      - build
+  #      - test
+  #    fileters:
+  #      branches: 
+  #      only: 
+  #        - master
