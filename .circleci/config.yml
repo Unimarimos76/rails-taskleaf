@@ -12,6 +12,9 @@ jobs:
   test: 
     docker:
       - image: circleci/ruby:2.5.3
+      environment:
+          # ①
+          BUNDLER_VERSION: 2.0.1
       - image: circleci/postgres:9.4.12-alpine
     steps:
       - checkout
