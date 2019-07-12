@@ -6,7 +6,6 @@ jobs:
     # steps:
     #  - checkout 
     #  - run: echo "A first hello"
-
       - image: circleci/postgres:9.4.12-alpine
 
     working_directory: ~rails_tutorial/taskeleaf
@@ -52,9 +51,9 @@ jobs:
           # name: heroku maintenance off
           # command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
 
- workflows: 
-   version: 2
-   jobs:
+workflows: 
+  version: 2
+  jobs:
      - build 
      - test
   #  - deploy: 
