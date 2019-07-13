@@ -58,11 +58,11 @@ workflows:
     jobs:
       - build
       - test
-  #  - deploy: 
-  #    requires: 
-  #      - build
-  #      - test
-  #    fileters:
-  #      branches: 
-  #      only: 
-  #        - master
+   - deploy: 
+     requires: 
+       - build
+       - test
+     fileters:
+       branches: 
+         only: 
+           - master
