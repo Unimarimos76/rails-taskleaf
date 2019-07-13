@@ -27,30 +27,30 @@ jobs:
           paths: 
             - ".git"
   
-  # deploy: 
-    # docker:
-      # - image: circleci/ruby:2.6.1-node-browsers
-    # working_directory: ~/rails_turorial/taskleaf
-    # steps:
-      # - checkout
-      # - run:
-          # name: 'Install Heroku CLI, if necessary'
-          # command: |
-            # if [[ $(command -v heroku) == "" ]]; then
-              # curl https://cli-assets.heroku.com/install.sh | sh
-            # else
-              # echo "Heroku is already installed. No operation was performed."
-            # fi
-      # - run:
-          # name: heroku maintenance on
-          # command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
-      # - run:
-          # name: Deploy to Heroku_Staging
-          # command: |
-            # git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_STAGE.git master
-      # - run:
-          # name: heroku maintenance off
-          # command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
+  deploy: 
+    docker:
+      - image: circleci/ruby:2.6.1-node-browsers
+    working_directory: ~/rails_turorial/taskleaf
+    steps:
+      - checkout
+      - run:
+          name: 'Install Heroku CLI, if necessary'
+          command: |
+            if [[ $(command -v heroku) == "" ]]; then
+              curl https://cli-assets.heroku.com/install.sh | sh
+            else
+              echo "Heroku is already installed. No operation was performed."
+            fi
+      - run:
+          name: heroku maintenance on
+          command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
+      - run:
+          name: Deploy to Heroku_Staging
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_STAGE.git master
+      - run:
+          name: heroku maintenance off
+          command: heroku maintenance:on --app ${HEROKU_APP_NAME_STAGE}
 
 workflows: 
   version: 2
